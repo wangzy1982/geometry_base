@@ -150,6 +150,48 @@ inline Interval sqrt(const Interval& interval) {
     throw "sqrt error";
 }
 
+inline Interval cos(const Interval& interval) {
+    double d = interval.Length();
+	if (d >= PI * 2) {
+		return Interval(-1, 1);
+	}
+	double min = interval.Min - int(interval.Min / (PI * 2)) * (PI * 2);
+	if (min < 0) {
+		min += PI * 2;
+	}
+	double max = min + d;
+	if (min <= PI) {
+		if (max <= PI) {
+			return Interval(cos(max), cos(min));
+		}
+		if (max <= PI * 2) {
+			double c0 = cos(min);
+			double c1 = cos(max);
+			return Interval(-1, c0 > c1 ? c0 : c1);
+		}
+		return Interval(-1, 1);
+	} else {
+		if (max < PI * 2) {
+			return Interval(cos(min), cos(max));
+		}
+		if (max < PI * 3) {
+			double c0 = cos(min)
+			double c1 = cos(max)
+			return Interval(c0 < c1 ? c0 : c1, 1)
+		}
+		return Interval(-1, 1)
+	}
+}
+
+inline Interval sin(const Interval& interval) {
+    return cos(interval - PI * 0.5);
+}
+
+inline void sincos(const Interval& interval, Interval* sin, Interval* cos) {
+    *sin = sin(interval);
+    *cos = cos(interval);
+}
+
 inline Interval::Interval() {
     Min = 0;
     Max = 0;

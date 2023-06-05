@@ -16,6 +16,46 @@ public:
     Interval3 Normalize(Interval& length) const;
 };
 
+inline Interval3 operator+(const Interval3& vt0, const Interval3& vt1) {
+    return Interval3(vt0.X + vt1.X, vt0.Y + vt1.Y, vt0.Z + vt1.Z);
+}
+
+inline Interval3 operator+(const Interval3& vt0, const Vector3& vt1) {
+    return Interval3(vt0.X + vt1.X, vt0.Y + vt1.Y, vt0.Z + vt1.Z);
+}
+
+inline Interval3 operator+(const Vector3& vt0, const Interval3& vt1) {
+    return Interval3(vt0.X + vt1.X, vt0.Y + vt1.Y, vt0.Z + vt1.Z);
+}
+
+inline Interval3 operator-(const Interval3& vt) {
+    return Interval3(-vt.X, -vt.Y, -vt.Z);
+}
+
+inline Interval3 operator-(const Interval3& vt0, const Interval3& vt1) {
+    return Interval3(vt0.X - vt1.X, vt0.Y - vt1.Y, vt0.Z - vt1.Z);
+}
+
+inline Interval3 operator-(const Interval3& vt0, const Vector3& vt1) {
+    return Interval3(vt0.X - vt1.X, vt0.Y - vt1.Y, vt0.Z - vt1.Z);
+}
+
+inline Interval3 operator-(const Vector3& vt0, const Interval3& vt1) {
+    return Interval3(vt0.X - vt1.X, vt0.Y - vt1.Y, vt0.Z - vt1.Z);
+}
+
+inline Interval3 operator*(const Interval3& vt, double d) {
+    return Interval3(vt.X * d, vt.Y * d, vt.Z * d);
+}
+
+inline Interval3 operator*(double d, const Interval3& vt) {
+    return Interval3(vt.X * d, vt.Y * d, vt.Z * d);
+}
+
+inline Interval3 operator/(const Interval3& vt, double d) {
+    return Interval3(vt.X / d, vt.Y / d, vt.Z / d);
+}
+
 inline Interval3::Interval3() {
     X = Interval();
     Y = Interval();

@@ -7,7 +7,7 @@
 class VarInterval {
 public:
     VarInterval(int knot_count);
-    VarInterval(Interval interval);
+    VarInterval(const Interval& interval);
     VarInterval(VarInterval* interval);
     virtual ~VarInterval();
     int KnotCount() const;
@@ -26,7 +26,7 @@ inline VarInterval::VarInterval(int knot_count) {
     m_knots = new double[m_knot_count];
 }
 
-inline VarInterval::VarInterval(Interval interval) {
+inline VarInterval::VarInterval(const Interval& interval) {
     m_knot_count = 2;
     m_knots = new double[2];
     m_knots[0] = interval.Min;
