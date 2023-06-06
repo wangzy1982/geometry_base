@@ -14,6 +14,7 @@ public:
     Interval Length() const;
     Interval3 Normalize() const;
     Interval3 Normalize(Interval& length) const;
+    double DiagonalLength() const;
 };
 
 inline Interval3 operator+(const Interval3& vt0, const Interval3& vt1) {
@@ -83,6 +84,13 @@ inline Interval3 Interval3::Normalize(Interval& length) const {
         return Interval3(Interval(-1, 1), Interval(-1, 1), Interval(-1, 1));
     }
     return Interval3(X / length, Y / length, Z / length);
+}
+
+inline double Interval3::DiagonalLength() const {
+    double x = X.Length();
+    double y = Y.Length();
+    double z = Z.Length();
+    return sqrt(x * x + y * y + z * z);
 }
 
 #endif

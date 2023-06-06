@@ -5,6 +5,7 @@
 #include <math.h>
 
 #define DOUBLE_EPSILON 1E-12
+extern double DISTANCE_EPSILON;
 
 inline double acos_safe(double c) {
     if (c >= 1) {

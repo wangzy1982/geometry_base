@@ -15,6 +15,7 @@ public:
     void SetKnot(int i, double d);
     double Min() const;
     double Max() const;
+    Interval ToInterval() const;
     VarInterval* SubInterval(int start, int count) const;
 private:
     double* m_knots;
@@ -61,6 +62,10 @@ inline double VarInterval::Min() const {
 
 inline double VarInterval::Max() const {
     return m_knots[m_knot_count - 1];
+}
+
+inline Interval VarInterval::ToInterval() const {
+    return Interval(Min(), Max());
 }
 
 inline VarInterval* VarInterval::SubInterval(int start, int count) const {

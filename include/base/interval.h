@@ -11,6 +11,7 @@ public:
     Interval();
     Interval(double d);
     Interval(double min, double max);
+    double Length() const;
     bool IsIntersected(double d, double epsilon) const;
     bool IsIntersected(const Interval& interval, double epsilon) const;
 };
@@ -175,11 +176,11 @@ inline Interval cos(const Interval& interval) {
 			return Interval(cos(min), cos(max));
 		}
 		if (max < PI * 3) {
-			double c0 = cos(min)
-			double c1 = cos(max)
-			return Interval(c0 < c1 ? c0 : c1, 1)
+			double c0 = cos(min);
+			double c1 = cos(max);
+			return Interval(c0 < c1 ? c0 : c1, 1);
 		}
-		return Interval(-1, 1)
+		return Interval(-1, 1);
 	}
 }
 
@@ -187,9 +188,9 @@ inline Interval sin(const Interval& interval) {
     return cos(interval - PI * 0.5);
 }
 
-inline void sincos(const Interval& interval, Interval* sin, Interval* cos) {
-    *sin = sin(interval);
-    *cos = cos(interval);
+inline void sincos(const Interval& interval, Interval* p_sin, Interval* p_cos) {
+    *p_sin = sin(interval);
+    *p_cos = cos(interval);
 }
 
 inline Interval::Interval() {
@@ -205,6 +206,10 @@ inline Interval::Interval(double d) {
 inline Interval::Interval(double min, double max) {
     Min = min;
     Max = max;
+}
+
+inline double Interval::Length() const {
+    return Max - Min;
 }
 
 inline bool Interval::IsIntersected(double d, double epsilon) const {
